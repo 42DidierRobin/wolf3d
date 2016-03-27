@@ -6,7 +6,7 @@
 #    By: rdidier <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/03/27 18:34:25 by rdidier           #+#    #+#              #
-#    Updated: 2016/03/27 18:35:34 by rdidier          ###   ########.fr        #
+#    Updated: 2016/03/27 21:37:12 by rdidier          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,10 @@ NAME	=	wolf3d
 SRC		=	sources/main.c							\
 			sources/image.c							\
 			sources/launch.c						\
+			sources/read.c							\
 			
+
+MAP		=	map/small
 
 OBJ		=	$(patsubst src/%.c,./%.o,$(SRC))
 
@@ -46,7 +49,7 @@ javel:
 	clear
 
 boom : javel fclean $(NAME) clean
-	./$(NAME)
+	./$(NAME) $(MAP)
 
 re: fclean all
 
