@@ -6,11 +6,34 @@
 /*   By: rdidier <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/27 18:36:10 by rdidier           #+#    #+#             */
-/*   Updated: 2016/03/27 18:46:50 by rdidier          ###   ########.fr       */
+/*   Updated: 2016/03/27 21:39:52 by rdidier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/wolf3d.h"
+
+//TEMp
+void				print_map(int **map, int size)
+{
+	int i;
+	int j;
+
+	i = 0;
+	while (i < size)
+	{
+		j = 0;
+		while (j < size)
+		{
+			ft_putnbr(map[i][j]);
+			ft_putstr(" ");
+			j++;
+		}
+		ft_putchar('\n');
+		i++;
+	}
+}
+//TEMp
+
 
 static void			print_cam(t_wolfd *data)
 {
@@ -37,12 +60,14 @@ int					launch_it(char *argv)
 {
 	t_wolfd	*data;
 
-	argv[0]++;
 	data = data_init();
 	if (!data)
 		return (0);
 	mlx_put_image_to_window(data->ptr, data->win, data->img->self, 0, 0);
 	print_cam(data);
+	if (!read_it(argv, data))
+		return (0);
+	print_map(data->map, data->size_map);
 	//mlx_key_hook(data->win, listener, (void*)data);
 	//mlx_hook(data->win, 6, (1L << 6), mouse_moove, (void*)data);
 	//mlx_mouse_hook(data->win, mouse_click, (void*)data);
