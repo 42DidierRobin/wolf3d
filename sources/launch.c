@@ -6,7 +6,7 @@
 /*   By: rdidier <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/27 18:36:10 by rdidier           #+#    #+#             */
-/*   Updated: 2016/03/29 18:22:13 by rdidier          ###   ########.fr       */
+/*   Updated: 2016/03/29 19:53:31 by rdidier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,7 @@ static t_wolfd		*data_init(void)
 
 //TEMP
 static void				test(t_wolfd *d)
-{
-	
+{	
 	draw_vline(d, 42, 444, 0);
 	draw_vline(d, 44, 444, 1);
 	draw_vline(d, 46, 444, 2);
@@ -85,7 +84,7 @@ int					launch_it(char *argv)
 	mlx_put_image_to_window(data->ptr, data->win, data->img->self, 0, 0);
 	print_cam(data);
 	print_map(data->map, data->size_map);
-	//mlx_key_hook(data->win, listener, (void*)data);
+	mlx_key_hook(data->win, listener, (void*)data);
 	//mlx_hook(data->win, 6, (1L << 6), mouse_moove, (void*)data);
 	//mlx_mouse_hook(data->win, mouse_click, (void*)data);
 	mlx_loop(data->ptr);

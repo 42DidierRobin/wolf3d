@@ -6,7 +6,7 @@
 /*   By: rdidier <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/27 18:36:21 by rdidier           #+#    #+#             */
-/*   Updated: 2016/03/29 17:58:48 by rdidier          ###   ########.fr       */
+/*   Updated: 2016/03/29 19:32:50 by rdidier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static t_color		*clr_by_type(int type)
 	else if (type == 3)
 		color = new_color(0,0,255);
 	else if (type == 4)
-		color = new_color(0,0,0);
+		color = new_color(255,0,255);
 	else
 		color = new_color(0,255,255);
 	return (color);

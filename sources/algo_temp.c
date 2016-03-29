@@ -6,7 +6,7 @@
 /*   By: rdidier <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/29 15:52:30 by rdidier           #+#    #+#             */
-/*   Updated: 2016/03/29 18:29:07 by rdidier          ###   ########.fr       */
+/*   Updated: 2016/03/29 19:57:05 by rdidier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,15 +33,14 @@ void		super_main(t_wolfd *d)
 	side_dist = new_point(0,0);
 	delt_dist = new_point(0,0);
 	ray_size = 0;
-	hit = 0;
 	x = -1;
 	while (++x < WINDOW_W)
 	{
-		cam_x = 2 * x / WINDOW_W - 1;
+		cam_x = 2 * x / (double)WINDOW_W - 1;
 		ray_pos->x = d->player->pos->x;
 		ray_pos->y = d->player->pos->y;
-		ray_dir->x = d->player->dir->x;
-		ray_dir->y = d->player->dir->y;
+		ray_dir->x = d->player->dir->x + d->player->plane->x + cam_x;
+		ray_dir->y = d->player->dir->y + d->player->plane->y + cam_x;
 		delt_dist->x = sqrt(1 + (ray_dir->y * ray_dir->y) / (ray_dir->x * ray_dir->x));
 		delt_dist->y = sqrt(1 + (ray_dir->x * ray_dir->x) / (ray_dir->y * ray_dir->y));
 		map_x = (int)ray_pos->x;
@@ -66,6 +65,7 @@ void		super_main(t_wolfd *d)
 			step->y = 1;
 			side_dist->y = ((double)map_y + 1 - ray_pos->y) * delt_dist->y;
 		}
+		hit = 0;
 		while (!hit)
 		{
 			if (side_dist->x < side_dist->y)
@@ -90,9 +90,10 @@ void		super_main(t_wolfd *d)
 			ray_size = ((double)map_y - ray_pos->y + (1 - step->y) / 2)
 				/ ray_dir->y;
 	
-		ft_putstr("fin dun tour de lalgo");
-		draw_vline(d, x, (int)ray_size, d->map[map_x][map_y]);
-		printf(" + dessin en x = %d avec un rayon de %f, et type de %d \n",
-				x, ray_size, d->map[map_x][map_y]);
+		//ft_putstr("fin dun tour de lalgo");
+		draw_vline(d, x, (int)((double)WINDOW_H / ray_size),
+				d->map[map_x][map_y]);
+		//printf(" + dessin en x = %d avec un rayon de %f, et type de %d \n",
+		//		x, ray_size, d->map[map_x][map_y]);
 	}
 }
