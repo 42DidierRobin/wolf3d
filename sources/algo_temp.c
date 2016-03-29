@@ -6,7 +6,7 @@
 /*   By: rdidier <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/29 15:52:30 by rdidier           #+#    #+#             */
-/*   Updated: 2016/03/29 19:57:05 by rdidier          ###   ########.fr       */
+/*   Updated: 2016/03/29 20:44:36 by rdidier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void		super_main(t_wolfd *d)
 {
 	int			x;
-	int			cam_x;
+	double		cam_x;
 	int			hit;
 	int			side;
 	int			map_x;
@@ -36,7 +36,7 @@ void		super_main(t_wolfd *d)
 	x = -1;
 	while (++x < WINDOW_W)
 	{
-		cam_x = 2 * x / (double)WINDOW_W - 1;
+		cam_x = 2 * (double)x / (double)WINDOW_W - 1;
 		ray_pos->x = d->player->pos->x;
 		ray_pos->y = d->player->pos->y;
 		ray_dir->x = d->player->dir->x + d->player->plane->x + cam_x;
@@ -90,10 +90,7 @@ void		super_main(t_wolfd *d)
 			ray_size = ((double)map_y - ray_pos->y + (1 - step->y) / 2)
 				/ ray_dir->y;
 	
-		//ft_putstr("fin dun tour de lalgo");
 		draw_vline(d, x, (int)((double)WINDOW_H / ray_size),
 				d->map[map_x][map_y]);
-		//printf(" + dessin en x = %d avec un rayon de %f, et type de %d \n",
-		//		x, ray_size, d->map[map_x][map_y]);
 	}
 }

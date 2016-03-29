@@ -6,7 +6,7 @@
 /*   By: rdidier <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/27 18:33:07 by rdidier           #+#    #+#             */
-/*   Updated: 2016/03/29 19:55:25 by rdidier          ###   ########.fr       */
+/*   Updated: 2016/03/29 20:38:14 by rdidier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 # define SEPARATOR		','
 # define WINDOW_H 		768
 # define WINDOW_W	 	1024
+# define ROTSPEED		0.1
 
 typedef unsigned char	t_uchar;
 
@@ -60,6 +61,7 @@ typedef struct		s_player
 
 typedef struct		s_wolfd
 {
+	t_color			*black;
 	t_player		*player;
 	int				size_map;
 	//int				nbrw;

@@ -6,7 +6,7 @@
 /*   By: rdidier <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/27 18:36:21 by rdidier           #+#    #+#             */
-/*   Updated: 2016/03/29 19:32:50 by rdidier          ###   ########.fr       */
+/*   Updated: 2016/03/29 20:37:36 by rdidier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,17 @@ void				draw_vline(t_wolfd *d, int x, int len, int type)
 
 	start = - len / 2 + WINDOW_H / 2;
 	end = len / 2 + WINDOW_H / 2;
-	i = start - 1;
+	i = 0;
 	if (start < 0)
 		start = 0;
 	if (end >= WINDOW_H)
 		end = WINDOW_H -1;
+	while (++i < start)
+		pix_on_img(d->img, x, i, d->black);
+	i--;
 	while (++i < end)
 		pix_on_img(d->img, x, i, clr_by_type(type));
+	i--;
+	while (++i < WINDOW_H)
+		pix_on_img(d->img, x, i, d->black);
 }

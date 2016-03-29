@@ -6,7 +6,7 @@
 /*   By: rdidier <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/27 18:36:10 by rdidier           #+#    #+#             */
-/*   Updated: 2016/03/29 19:53:31 by rdidier          ###   ########.fr       */
+/*   Updated: 2016/03/29 20:37:56 by rdidier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ static t_wolfd		*data_init(void)
 			&d->img->bpl, &d->img->endian);
 	d->player = new_player(new_point(22, 12), new_point(-1, 0),
 			new_point(0, 0.66));
+	d->black = new_color(0,0,0);
 	return (d);
 }
 
