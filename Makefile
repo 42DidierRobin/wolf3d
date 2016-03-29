@@ -6,7 +6,7 @@
 #    By: rdidier <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/03/27 18:34:25 by rdidier           #+#    #+#              #
-#    Updated: 2016/03/27 21:37:12 by rdidier          ###   ########.fr        #
+#    Updated: 2016/03/29 18:10:28 by rdidier          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,9 +16,11 @@ SRC		=	sources/main.c							\
 			sources/image.c							\
 			sources/launch.c						\
 			sources/read.c							\
+			sources/struct.c						\
+			sources/algo_temp.c						\
 			
 
-MAP		=	map/small
+MAP		=	map/map0
 
 OBJ		=	$(patsubst src/%.c,./%.o,$(SRC))
 

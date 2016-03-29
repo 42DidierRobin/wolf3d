@@ -6,7 +6,7 @@
 /*   By: rdidier <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/27 18:33:07 by rdidier           #+#    #+#             */
-/*   Updated: 2016/03/27 21:39:49 by rdidier          ###   ########.fr       */
+/*   Updated: 2016/03/29 18:29:11 by rdidier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,9 @@
 # include <stdio.h>
 //TEMP
 
-# define WINDOW_H 		800
-# define WINDOW_W	 	800
+# define SEPARATOR		','
+# define WINDOW_H 		768
+# define WINDOW_W	 	1024
 
 typedef unsigned char	t_uchar;
 
@@ -44,8 +45,22 @@ typedef struct		s_img
 	int				endian;
 }					t_img;
 
+typedef struct		s_point
+{
+	double			x;
+	double			y;
+}					t_point;
+
+typedef struct		s_player
+{
+	t_point			*pos;
+	t_point			*dir;
+	t_point			*plane;
+}					t_player;
+
 typedef struct		s_wolfd
 {
+	t_player		*player;
 	int				size_map;
 	//int				nbrw;
 	int				**map;
@@ -54,6 +69,15 @@ typedef struct		s_wolfd
 	t_img			*img;
 }					t_wolfd;
 
+void				super_main(t_wolfd *d);
+
+int					pix_on_img(t_img *img, int x, int y, t_color *clr);
+void				draw_vline(t_wolfd *d, int x, int len, int type);
+
 int					launch_it(char *argv);
 int					read_it(char *file_name, t_wolfd *d);
+
+t_point				*new_point(double x, double y);
+t_color				*new_color(t_uchar r, t_uchar g, t_uchar b);
+t_player			*new_player(t_point *pos, t_point *dir, t_point *plane);
 #endif

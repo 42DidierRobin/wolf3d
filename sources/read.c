@@ -6,7 +6,7 @@
 /*   By: rdidier <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/27 19:53:40 by rdidier           #+#    #+#             */
-/*   Updated: 2016/03/27 21:39:30 by rdidier          ###   ########.fr       */
+/*   Updated: 2016/03/29 15:41:39 by rdidier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static int	read_help(int *lmap, int size, char *read)
 	char	**split_ret;
 
 	i = -1;
-	split_ret = ft_strsplit((char const*)read, ' ');
+	split_ret = ft_strsplit((char const*)read, SEPARATOR);
 	while (split_ret[++i])
 		;
 	if (i != size)
