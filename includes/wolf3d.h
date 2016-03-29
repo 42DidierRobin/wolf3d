@@ -6,7 +6,7 @@
 /*   By: rdidier <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/27 18:33:07 by rdidier           #+#    #+#             */
-/*   Updated: 2016/03/29 18:29:11 by rdidier          ###   ########.fr       */
+/*   Updated: 2016/03/29 19:55:25 by rdidier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,8 @@ typedef struct		s_wolfd
 	void			*win;
 	t_img			*img;
 }					t_wolfd;
+
+int					listener(int keycode, void *d);
 
 void				super_main(t_wolfd *d);
 
