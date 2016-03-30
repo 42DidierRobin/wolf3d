@@ -6,7 +6,7 @@
 /*   By: rdidier <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/29 19:46:46 by rdidier           #+#    #+#             */
-/*   Updated: 2016/03/29 20:55:50 by rdidier          ###   ########.fr       */
+/*   Updated: 2016/03/30 11:08:16 by rdidier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ int			listener(int keycode, void *data)
 	move(keycode, d);
 	turn(keycode, d, d->player->dir->x, d->player->plane->x);
 	mlx_clear_window(d->ptr, d->win);
-	super_main(d);
+	algo(d);
 	mlx_put_image_to_window(d->ptr, d->win, d->img->self, 0, 0);
 	return (1);
 }

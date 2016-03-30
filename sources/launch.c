@@ -6,7 +6,7 @@
 /*   By: rdidier <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/27 18:36:10 by rdidier           #+#    #+#             */
-/*   Updated: 2016/03/29 20:37:56 by rdidier          ###   ########.fr       */
+/*   Updated: 2016/03/30 10:57:53 by rdidier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ static t_wolfd		*data_init(void)
 	d->player = new_player(new_point(22, 12), new_point(-1, 0),
 			new_point(0, 0.66));
 	d->black = new_color(0,0,0);
+	d->ray = new_ray();
 	return (d);
 }
 
@@ -68,7 +69,7 @@ static void				test(t_wolfd *d)
 	draw_vline(d, 48, 444, 3);
 	draw_vline(d, 50, 444, 4);
 	draw_vline(d, 52, 444, 5);
-	super_main(d);
+	algo(d);
 }
 //TEMP
 

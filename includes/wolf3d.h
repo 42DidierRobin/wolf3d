@@ -6,7 +6,7 @@
 /*   By: rdidier <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/27 18:33:07 by rdidier           #+#    #+#             */
-/*   Updated: 2016/03/30 10:29:15 by rdidier          ###   ########.fr       */
+/*   Updated: 2016/03/30 10:58:05 by rdidier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ typedef struct		s_ray
 
 typedef struct		s_wolfd
 {
+	t_ray			*ray;
 	t_color			*black;
 	t_player		*player;
 	int				size_map;
@@ -88,7 +89,7 @@ typedef struct		s_wolfd
 
 int					listener(int keycode, void *d);
 
-void				super_main(t_wolfd *d);
+void				algo(t_wolfd *d);
 
 int					pix_on_img(t_img *img, int x, int y, t_color *clr);
 void				draw_vline(t_wolfd *d, int x, int len, int type);
