@@ -6,7 +6,7 @@
 /*   By: rdidier <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/27 18:33:07 by rdidier           #+#    #+#             */
-/*   Updated: 2016/03/29 20:38:14 by rdidier          ###   ########.fr       */
+/*   Updated: 2016/03/30 10:29:15 by rdidier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,21 @@ typedef struct		s_player
 	t_point			*plane;
 }					t_player;
 
+typedef struct		s_ray
+{
+	char			touch;
+	char			side;
+	char			stepx;
+	char			stepy;
+	int				mapx;
+	int				mapy;
+	double			size;
+	t_point			*pos;
+	t_point			*dir;
+	t_point			*sdist;
+	t_point			*ddist;
+}					t_ray;
+
 typedef struct		s_wolfd
 {
 	t_color			*black;
@@ -84,4 +99,6 @@ int					read_it(char *file_name, t_wolfd *d);
 t_point				*new_point(double x, double y);
 t_color				*new_color(t_uchar r, t_uchar g, t_uchar b);
 t_player			*new_player(t_point *pos, t_point *dir, t_point *plane);
+t_ray				*new_ray();
+void				cpy_point(t_point *a, t_point *b);
 #endif

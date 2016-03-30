@@ -6,11 +6,24 @@
 /*   By: rdidier <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/29 15:48:01 by rdidier           #+#    #+#             */
-/*   Updated: 2016/03/29 17:42:05 by rdidier          ###   ########.fr       */
+/*   Updated: 2016/03/30 10:17:43 by rdidier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/wolf3d.h"
+
+t_ray				*new_ray()
+{
+	t_ray		*ray;
+
+	ray = (t_ray*)malloc(sizeof(t_ray));
+	ray->pos = new_point(0, 0);
+	ray->dir = new_point(0, 0);
+	ray->sdist = new_point(0, 0);
+	ray->ddist = new_point(0, 0);
+	
+	return (ray);
+}
 
 t_color				*new_color(t_uchar r, t_uchar g, t_uchar b)
 {
@@ -21,6 +34,12 @@ t_color				*new_color(t_uchar r, t_uchar g, t_uchar b)
 	ret->g = g;
 	ret->b = b;
 	return (ret);
+}
+
+void				cpy_point(t_point *a, t_point *b)
+{
+	a->x = b->x;
+	a->y = b->y;
 }
 
 t_point				*new_point(double x, double y)
