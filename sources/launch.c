@@ -6,7 +6,7 @@
 /*   By: rdidier <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/27 18:36:10 by rdidier           #+#    #+#             */
-/*   Updated: 2016/03/30 10:57:53 by rdidier          ###   ########.fr       */
+/*   Updated: 2016/03/30 14:24:36 by rdidier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,23 +55,11 @@ static t_wolfd		*data_init(void)
 			&d->img->bpl, &d->img->endian);
 	d->player = new_player(new_point(22, 12), new_point(-1, 0),
 			new_point(0, 0.66));
-	d->black = new_color(0,0,0);
+	d->ground = new_color(42,42,42);
+	d->sky = new_color(125,125,255);
 	d->ray = new_ray();
 	return (d);
 }
-
-//TEMP
-static void				test(t_wolfd *d)
-{	
-	draw_vline(d, 42, 444, 0);
-	draw_vline(d, 44, 444, 1);
-	draw_vline(d, 46, 444, 2);
-	draw_vline(d, 48, 444, 3);
-	draw_vline(d, 50, 444, 4);
-	draw_vline(d, 52, 444, 5);
-	algo(d);
-}
-//TEMP
 
 int					launch_it(char *argv)
 {
@@ -82,13 +70,11 @@ int					launch_it(char *argv)
 		return (0);
 	if (!read_it(argv, data))
 		return (0);
-	test(data);
+	algo(data);
 	mlx_put_image_to_window(data->ptr, data->win, data->img->self, 0, 0);
 	print_cam(data);
 	print_map(data->map, data->size_map);
-	mlx_key_hook(data->win, listener, (void*)data);
-	//mlx_hook(data->win, 6, (1L << 6), mouse_moove, (void*)data);
-	//mlx_mouse_hook(data->win, mouse_click, (void*)data);
+	mlx_hook(data->win, KEY_EVENT, KEY_MASK, listener, (void*)data);
 	mlx_loop(data->ptr);
 	return (1);
 }

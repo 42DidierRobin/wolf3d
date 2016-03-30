@@ -6,7 +6,7 @@
 /*   By: rdidier <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/27 18:36:21 by rdidier           #+#    #+#             */
-/*   Updated: 2016/03/29 20:37:36 by rdidier          ###   ########.fr       */
+/*   Updated: 2016/03/30 14:26:54 by rdidier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int					pix_on_img(t_img *img, int x, int y, t_color *clr)
 	return (0);
 }
 
-static t_color		*clr_by_type(int type)
+static t_color		*clr_by_type(int type, char side)
 {
 	t_color	*color;
 
@@ -37,6 +37,12 @@ static t_color		*clr_by_type(int type)
 		color = new_color(255,0,255);
 	else
 		color = new_color(0,255,255);
+	if (side)
+	{
+		color->r *= 0.5;
+		color->g *= 0.5;
+		color->b *= 0.5;
+	}
 	return (color);
 }
 
@@ -54,11 +60,11 @@ void				draw_vline(t_wolfd *d, int x, int len, int type)
 	if (end >= WINDOW_H)
 		end = WINDOW_H -1;
 	while (++i < start)
-		pix_on_img(d->img, x, i, d->black);
+		pix_on_img(d->img, x, i, d->sky);
 	i--;
 	while (++i < end)
-		pix_on_img(d->img, x, i, clr_by_type(type));
+		pix_on_img(d->img, x, i, clr_by_type(type, d->ray->side));
 	i--;
 	while (++i < WINDOW_H)
-		pix_on_img(d->img, x, i, d->black);
+		pix_on_img(d->img, x, i, d->ground);
 }

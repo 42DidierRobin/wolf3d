@@ -6,7 +6,7 @@
 /*   By: rdidier <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/27 18:33:07 by rdidier           #+#    #+#             */
-/*   Updated: 2016/03/30 11:55:40 by rdidier          ###   ########.fr       */
+/*   Updated: 2016/03/30 14:21:30 by rdidier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@
 //TEMP
 
 # define SEPARATOR		','
+# define KEY_EVENT		2
+# define KEY_MASK		(1L<<0)
 # define WINDOW_H 		768
 # define WINDOW_W	 	1024
 # define ROTSPEED		0.1
@@ -77,7 +79,8 @@ typedef struct		s_ray
 typedef struct		s_wolfd
 {
 	t_ray			*ray;
-	t_color			*black;
+	t_color			*sky;
+	t_color			*ground;
 	t_player		*player;
 	int				size_map;
 	//int				nbrw;

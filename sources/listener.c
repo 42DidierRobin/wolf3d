@@ -6,11 +6,32 @@
 /*   By: rdidier <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/29 19:46:46 by rdidier           #+#    #+#             */
-/*   Updated: 2016/03/30 11:55:33 by rdidier          ###   ########.fr       */
+/*   Updated: 2016/03/30 13:44:11 by rdidier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/wolf3d.h"
+
+static char		test_move(t_player *p, int **m, int max, char sign)
+{
+	int	newx;
+	int	newy;
+	
+	if (sign)
+	{
+		newx = p->pos->x + 0.5 * p->dir->x;
+		newy = p->pos->y + 0.5 * p->dir->y;
+	}
+	else
+	{
+		newx = p->pos->x - 0.5 * p->dir->x;
+		newy = p->pos->y - 0.5 * p->dir->y;
+	}
+	if (newx < max && newy < max && newx > 1 && newy > 1 
+			&& !m[newx][newy])
+		return (1);
+	return (0);
+}
 
 static void		turn(int keycode, t_wolfd *d,
 						double old_dirx, double old_planex)
@@ -41,13 +62,12 @@ static void		turn(int keycode, t_wolfd *d,
 
 static void		move(int keycode, t_wolfd *d)
 {
-	
-	if (keycode == 126)
+	if (keycode == 126 && test_move(d->player, d->map, d->size_map, 1))
 	{
-		d->player->pos->x += d->player->dir->x;
-		d->player->pos->y += d->player->dir->y;
+		d->player->pos->x += 0.5 * d->player->dir->x;
+		d->player->pos->y += 0.5 * d->player->dir->y;
 	}
-	else if (keycode == 125)
+	else if (keycode == 125 && test_move(d->player, d->map, d->size_map, 0))
 	{
 		d->player->pos->x -= d->player->dir->x;
 		d->player->pos->y -= d->player->dir->y;
