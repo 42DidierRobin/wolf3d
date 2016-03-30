@@ -6,7 +6,7 @@
 /*   By: rdidier <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/27 18:36:10 by rdidier           #+#    #+#             */
-/*   Updated: 2016/03/30 14:24:36 by rdidier          ###   ########.fr       */
+/*   Updated: 2016/03/30 16:17:11 by rdidier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,29 @@ void				print_map(int **map, int size)
 }
 //TEMp
 
+int			listener(int keycode, void *data)
+{
+	t_wolfd		*d;
 
-static void			print_cam(t_wolfd *data)
+	d = (t_wolfd*)data;
+	if (keycode == 53)
+	{
+		mlx_destroy_window(d->ptr, d->win);
+		mlx_destroy_image(d->ptr, d->img->self);
+		exit(0);
+	}
+	if (keycode == 124)
+		d->code[0] = !d->code[0];
+	else if (keycode == 123)
+		d->code[1] = !d->code[1];
+	else if (keycode == 126)
+		d->code[2] = !d->code[2];
+	else if (keycode == 125)
+		d->code[3] = !d->code[3];
+	return (1);
+}
+
+static void			print_info(t_wolfd *data)
 {
 	mlx_string_put(data->ptr, data->win, 0, 0, 16777215,
 			"Afficher des trucs ?");
@@ -58,6 +79,10 @@ static t_wolfd		*data_init(void)
 	d->ground = new_color(42,42,42);
 	d->sky = new_color(125,125,255);
 	d->ray = new_ray();
+	d->code[0] = 0;
+	d->code[1] = 0;
+	d->code[2] = 0;
+	d->code[3] = 0;
 	return (d);
 }
 
@@ -70,11 +95,20 @@ int					launch_it(char *argv)
 		return (0);
 	if (!read_it(argv, data))
 		return (0);
-	algo(data);
-	mlx_put_image_to_window(data->ptr, data->win, data->img->self, 0, 0);
-	print_cam(data);
-	print_map(data->map, data->size_map);
-	mlx_hook(data->win, KEY_EVENT, KEY_MASK, listener, (void*)data);
+	mlx_do_key_autorepeatoff(data->ptr);
+	mlx_loop_hook(data->ptr, loop, data);
+	mlx_hook(data->win, KEY_EVENT, KEY_MASK, listener, data);
+	mlx_key_hook(data->win, listener, data);
 	mlx_loop(data->ptr);
+	return (1);
+}
+
+int				loop(t_wolfd *d)
+{
+	move(d->code, d);
+	turn(d->code, d, d->player->dir->x, d->player->plane->x);
+	algo(d);
+	print_info(d);
+	mlx_put_image_to_window(d->ptr, d->win, d->img->self, 0, 0);
 	return (1);
 }
