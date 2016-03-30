@@ -6,7 +6,7 @@
 /*   By: rdidier <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/29 19:46:46 by rdidier           #+#    #+#             */
-/*   Updated: 2016/03/30 11:08:16 by rdidier          ###   ########.fr       */
+/*   Updated: 2016/03/30 11:55:33 by rdidier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static void		turn(int keycode, t_wolfd *d,
 
 static void		move(int keycode, t_wolfd *d)
 {
-	//pas de securite pour linstant
+	
 	if (keycode == 126)
 	{
 		d->player->pos->x += d->player->dir->x;

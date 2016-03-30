@@ -6,7 +6,7 @@
 /*   By: rdidier <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/29 15:52:30 by rdidier           #+#    #+#             */
-/*   Updated: 2016/03/30 11:07:14 by rdidier          ###   ########.fr       */
+/*   Updated: 2016/03/30 11:48:14 by rdidier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,17 +57,17 @@ static void		give_steps(t_ray *r)
 void			algo(t_wolfd *d)
 {
 	int			x;
-	double		cam_x;
+	double		xi;
 	t_ray		*r;
 
 	r = d->ray;
 	x = -1;
 	while (++x < WINDOW_W)
 	{
-		cam_x = 2 * (double)x / (double)WINDOW_W - 1;
+		xi = 2 * (double)x / (double)WINDOW_W - 1;
 		cpy_point(r->pos, d->player->pos);
-		r->dir->x = d->player->dir->x + d->player->plane->x + cam_x;
-		r->dir->y = d->player->dir->y + d->player->plane->y + cam_x;
+		r->dir->x = d->player->dir->x + d->player->plane->x * xi;
+		r->dir->y = d->player->dir->y + d->player->plane->y * xi;
 		r->ddist->x = sqrt(1 + (pow(r->dir->y, 2) / pow(r->dir->x, 2)));
 		r->ddist->y = sqrt(1 + (pow(r->dir->x, 2) / pow(r->dir->y, 2)));
 		r->mapx = (int)r->pos->x;
