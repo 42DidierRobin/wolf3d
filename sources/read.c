@@ -6,7 +6,7 @@
 /*   By: rdidier <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/27 19:53:40 by rdidier           #+#    #+#             */
-/*   Updated: 2016/04/01 17:23:38 by rdidier          ###   ########.fr       */
+/*   Updated: 2016/04/01 17:36:22 by rdidier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,8 +104,9 @@ int			read_it(char *file_name, t_wolfd *d)
 			return (0);
 		i++;
 	}
-	if (!(d->map[(int)d->player->pos->x][(int)d->player->pos->y])
-			&& check_map(d->map, d->size_map))
+	if (i == d->size_map 
+		&& !(d->map[(int)d->player->pos->x][(int)d->player->pos->y])
+		&& check_map(d->map, d->size_map))
 		return (1);
 	return (0);
 }
