@@ -6,7 +6,7 @@
 /*   By: rdidier <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/27 18:33:07 by rdidier           #+#    #+#             */
-/*   Updated: 2016/04/01 15:53:42 by rdidier          ###   ########.fr       */
+/*   Updated: 2016/04/01 16:57:38 by rdidier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,13 @@
 # include <stdio.h>
 //TEMP
 
-# define SEPARATOR		','
+# define SEPARATOR		' '
 # define KEY_EVENT		2
 # define KEY_MASK		(1L<<0)
 # define WINDOW_H 		768
 # define WINDOW_W	 	1024
 # define ROTSPEED		0.042
-# define MOVESPEED		0.17
+# define MOVESPEED		0.12
 
 typedef unsigned char	t_uchar;
 
@@ -90,7 +90,7 @@ typedef struct		s_wolfd
 	t_color			*south;
 	t_player		*player;
 	int				size_map;
-	//int				nbrw;
+	int				nbrw;
 	int				**map;
 	void			*ptr;
 	void			*win;

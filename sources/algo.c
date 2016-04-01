@@ -6,7 +6,7 @@
 /*   By: rdidier <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/29 15:52:30 by rdidier           #+#    #+#             */
-/*   Updated: 2016/04/01 15:53:44 by rdidier          ###   ########.fr       */
+/*   Updated: 2016/04/01 16:17:56 by rdidier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 static void		dda(t_wolfd *d, t_ray *r)
 {
+
 	if (r->sdist->x < r->sdist->y)
 	{
 		r->sdist->x += r->ddist->x;
@@ -62,7 +63,6 @@ void			algo(t_wolfd *d)
 
 	r = d->ray;
 	x = -1;
-	printf("direction player : (%f, %f)\n", d->player->dir->x, d->player->dir->y);
 	while (++x < WINDOW_W)
 	{
 		xi = 2 * (double)x / (double)WINDOW_W - 1;

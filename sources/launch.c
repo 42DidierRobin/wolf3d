@@ -6,7 +6,7 @@
 /*   By: rdidier <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/27 18:36:10 by rdidier           #+#    #+#             */
-/*   Updated: 2016/04/01 15:53:39 by rdidier          ###   ########.fr       */
+/*   Updated: 2016/04/01 16:32:37 by rdidier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,12 +56,6 @@ int			listener(int keycode, void *data)
 	return (1);
 }
 
-static void			print_info(t_wolfd *data)
-{
-	mlx_string_put(data->ptr, data->win, 0, 0, 16777215,
-			"Afficher des trucs ?");
-}
-
 static t_wolfd		*data_init(void)
 {
 	t_wolfd	*d;
@@ -74,7 +68,7 @@ static t_wolfd		*data_init(void)
 	d->img->self = mlx_new_image(d->ptr, WINDOW_W, WINDOW_H);
 	d->img->buff = mlx_get_data_addr(d->img->self, &d->img->bpp,
 			&d->img->bpl, &d->img->endian);
-	d->player = new_player(new_point(22, 12), new_point(-1, 0),
+	d->player = new_player(new_point(10, 12), new_point(-1, 0),
 			new_point(0, 0.66));
 	d->ground = new_color(42,42,42);
 	d->sky = new_color(142,142,255);
@@ -95,6 +89,7 @@ int					launch_it(char *argv)
 		return (0);
 	if (!read_it(argv, data))
 		return (0);
+	print_map(data->map, data->size_map);
 	mlx_do_key_autorepeatoff(data->ptr);
 	mlx_loop_hook(data->ptr, loop, data);
 	mlx_hook(data->win, KEY_EVENT, KEY_MASK, listener, data);
@@ -108,7 +103,6 @@ int				loop(t_wolfd *d)
 	move(d->code, d);
 	turn(d->code, d, d->player->dir->x, d->player->plane->x);
 	algo(d);
-	print_info(d);
 	mlx_put_image_to_window(d->ptr, d->win, d->img->self, 0, 0);
 	return (1);
 }
