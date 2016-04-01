@@ -6,7 +6,7 @@
 /*   By: rdidier <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/29 15:52:30 by rdidier           #+#    #+#             */
-/*   Updated: 2016/03/30 14:18:05 by rdidier          ###   ########.fr       */
+/*   Updated: 2016/04/01 15:53:44 by rdidier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ void			algo(t_wolfd *d)
 
 	r = d->ray;
 	x = -1;
+	printf("direction player : (%f, %f)\n", d->player->dir->x, d->player->dir->y);
 	while (++x < WINDOW_W)
 	{
 		xi = 2 * (double)x / (double)WINDOW_W - 1;
@@ -80,7 +81,6 @@ void			algo(t_wolfd *d)
 			r->size = (r->mapx - r->pos->x + (1 - r->stepx) / 2) / r->dir->x;
 		else
 			r->size = (r->mapy - r->pos->y + (1 - r->stepy) / 2) / r->dir->y;
-		draw_vline(d, x, (int)((WINDOW_H / r->size)),
-										d->map[r->mapx][r->mapy]);
+		draw_vline(d, x, (int)((WINDOW_H / r->size)));
 	}
 }

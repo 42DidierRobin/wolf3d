@@ -6,7 +6,7 @@
 /*   By: rdidier <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/29 19:46:46 by rdidier           #+#    #+#             */
-/*   Updated: 2016/03/30 16:31:19 by rdidier          ###   ########.fr       */
+/*   Updated: 2016/04/01 15:53:35 by rdidier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,15 @@ static char		test_move(t_player *p, int **m, int max, char sign)
 	
 	if (sign)
 	{
-		newx = p->pos->x + 0.21 * p->dir->x;
-		newy = p->pos->y + 0.21 * p->dir->y;
+		newx = p->pos->x + MOVESPEED * p->dir->x;
+		newy = p->pos->y + MOVESPEED * p->dir->y;
 	}
 	else
 	{
-		newx = p->pos->x - 0.21 * p->dir->x;
-		newy = p->pos->y - 0.21 * p->dir->y;
+		newx = p->pos->x - MOVESPEED * p->dir->x;
+		newy = p->pos->y - MOVESPEED * p->dir->y;
 	}
-	if (newx < max && newy < max && newx > 2 && newy > 2 
+	if (newx < max && newy < max && newx > 0 && newy > 0 
 			&& !m[newx][newy])
 		return (1);
 	return (0);
@@ -64,12 +64,12 @@ void		move(char *code, t_wolfd *d)
 {
 	if (code[2] && test_move(d->player, d->map, d->size_map, 1))
 	{
-		d->player->pos->x += 0.21 * d->player->dir->x;
-		d->player->pos->y += 0.21 * d->player->dir->y;
+		d->player->pos->x += MOVESPEED * d->player->dir->x;
+		d->player->pos->y += MOVESPEED * d->player->dir->y;
 	}
 	else if (code[3] && test_move(d->player, d->map, d->size_map, 0))
 	{
-		d->player->pos->x -= d->player->dir->x;
-		d->player->pos->y -= d->player->dir->y;
+		d->player->pos->x -= MOVESPEED * d->player->dir->x;
+		d->player->pos->y -= MOVESPEED * d->player->dir->y;
 	}
 }

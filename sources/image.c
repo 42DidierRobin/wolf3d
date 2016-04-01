@@ -6,7 +6,7 @@
 /*   By: rdidier <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/27 18:36:21 by rdidier           #+#    #+#             */
-/*   Updated: 2016/03/30 14:26:54 by rdidier          ###   ########.fr       */
+/*   Updated: 2016/04/01 15:49:27 by rdidier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,30 +23,26 @@ int					pix_on_img(t_img *img, int x, int y, t_color *clr)
 	return (0);
 }
 
-static t_color		*clr_by_type(int type, char side)
+static t_color		*clr_by_type(t_wolfd *d)
 {
-	t_color	*color;
-
-	if (type == 1)
-		color = new_color(255,0,0);
-	else if (type == 2)
-		color = new_color(0,255,0);
-	else if (type == 3)
-		color = new_color(0,0,255);
-	else if (type == 4)
-		color = new_color(255,0,255);
-	else
-		color = new_color(0,255,255);
-	if (side)
+	if (d->ray->side)
 	{
-		color->r *= 0.5;
-		color->g *= 0.5;
-		color->b *= 0.5;
+		if (d->ray->dir->y > 0)
+			return (d->west);
+		else  
+			return (d->east);
 	}
-	return (color);
+	else if (!d->ray->side)
+	{
+		if (d->ray->dir->x > 0)
+			return (d->south);
+		else  
+			return (d->north);
+	}
+	return (d->ground);
 }
 
-void				draw_vline(t_wolfd *d, int x, int len, int type)
+void				draw_vline(t_wolfd *d, int x, int len)
 {
 	int	i;
 	int start;
@@ -63,7 +59,7 @@ void				draw_vline(t_wolfd *d, int x, int len, int type)
 		pix_on_img(d->img, x, i, d->sky);
 	i--;
 	while (++i < end)
-		pix_on_img(d->img, x, i, clr_by_type(type, d->ray->side));
+		pix_on_img(d->img, x, i, clr_by_type(d));
 	i--;
 	while (++i < WINDOW_H)
 		pix_on_img(d->img, x, i, d->ground);

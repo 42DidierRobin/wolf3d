@@ -6,7 +6,7 @@
 /*   By: rdidier <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/27 18:33:07 by rdidier           #+#    #+#             */
-/*   Updated: 2016/03/30 16:32:23 by rdidier          ###   ########.fr       */
+/*   Updated: 2016/04/01 15:53:42 by rdidier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,13 @@
 # include <stdio.h>
 //TEMP
 
-# define SEPARATOR		' '
+# define SEPARATOR		','
 # define KEY_EVENT		2
 # define KEY_MASK		(1L<<0)
-# define FPS			100
 # define WINDOW_H 		768
 # define WINDOW_W	 	1024
-# define ROTSPEED		0.05
+# define ROTSPEED		0.042
+# define MOVESPEED		0.17
 
 typedef unsigned char	t_uchar;
 
@@ -84,6 +84,10 @@ typedef struct		s_wolfd
 	t_ray			*ray;
 	t_color			*sky;
 	t_color			*ground;
+	t_color			*west;
+	t_color			*east;
+	t_color			*north;
+	t_color			*south;
 	t_player		*player;
 	int				size_map;
 	//int				nbrw;
@@ -98,7 +102,7 @@ int					listener(int keycode, void *d);
 void				algo(t_wolfd *d);
 
 int					pix_on_img(t_img *img, int x, int y, t_color *clr);
-void				draw_vline(t_wolfd *d, int x, int len, int type);
+void				draw_vline(t_wolfd *d, int x, int len);
 int					loop(t_wolfd *d);
 int					launch_it(char *argv);
 int					read_it(char *file_name, t_wolfd *d);
