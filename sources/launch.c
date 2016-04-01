@@ -6,7 +6,7 @@
 /*   By: rdidier <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/27 18:36:10 by rdidier           #+#    #+#             */
-/*   Updated: 2016/04/01 17:04:43 by rdidier          ###   ########.fr       */
+/*   Updated: 2016/04/01 17:13:28 by rdidier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,6 @@ int					launch_it(char *argv)
 		return (0);
 	if (!read_it(argv, data))
 		return (0);
-	print_map(data->map, data->size_map);
 	mlx_do_key_autorepeatoff(data->ptr);
 	mlx_loop_hook(data->ptr, loop, data);
 	mlx_hook(data->win, KEY_EVENT, KEY_MASK, listener, data);

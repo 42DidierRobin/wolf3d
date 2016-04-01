@@ -6,7 +6,7 @@
 /*   By: rdidier <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/27 19:53:40 by rdidier           #+#    #+#             */
-/*   Updated: 2016/04/01 17:06:48 by rdidier          ###   ########.fr       */
+/*   Updated: 2016/04/01 17:14:11 by rdidier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ static int	get_map_info(t_wolfd *d, char *line)
 	d->player->pos->y = ft_atoi(split_ret[2]);
 	d->player->pos->x += (d->player->pos->x < d->size_map / 2) ? 0.5 : -0.5;
 	d->player->pos->y += (d->player->pos->y < d->size_map / 2) ? 0.5 : -0.5;
-	printf("point : (%f, %f)\n", d->player->pos->x, d->player->pos->y);
 	if (d->player->pos->y < d->size_map / 2)
 		d->player->pos->x += 0.5;
 	if (d->player->pos->x > d->size_map
