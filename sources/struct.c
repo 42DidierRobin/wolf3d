@@ -6,13 +6,13 @@
 /*   By: rdidier <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/29 15:48:01 by rdidier           #+#    #+#             */
-/*   Updated: 2016/03/30 10:48:43 by rdidier          ###   ########.fr       */
+/*   Updated: 2016/04/01 17:07:17 by rdidier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/wolf3d.h"
 
-t_ray				*new_ray()
+t_ray				*new_ray(void)
 {
 	t_ray		*ray;
 
@@ -21,7 +21,6 @@ t_ray				*new_ray()
 	ray->dir = new_point(0, 0);
 	ray->sdist = new_point(0, 0);
 	ray->ddist = new_point(0, 0);
-	
 	return (ray);
 }
 

@@ -6,17 +6,17 @@
 /*   By: rdidier <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/29 19:46:46 by rdidier           #+#    #+#             */
-/*   Updated: 2016/04/01 15:53:35 by rdidier          ###   ########.fr       */
+/*   Updated: 2016/04/01 17:05:56 by rdidier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/wolf3d.h"
 
-static char		test_move(t_player *p, int **m, int max, char sign)
+static char			test_move(t_player *p, int **m, int max, char sign)
 {
 	int	newx;
 	int	newy;
-	
+
 	if (sign)
 	{
 		newx = p->pos->x + MOVESPEED * p->dir->x;
@@ -27,13 +27,13 @@ static char		test_move(t_player *p, int **m, int max, char sign)
 		newx = p->pos->x - MOVESPEED * p->dir->x;
 		newy = p->pos->y - MOVESPEED * p->dir->y;
 	}
-	if (newx < max && newy < max && newx > 0 && newy > 0 
+	if (newx < max && newy < max && newx > 0 && newy > 0
 			&& !m[newx][newy])
 		return (1);
 	return (0);
 }
 
-void		turn(char *code, t_wolfd *d,
+void				turn(char *code, t_wolfd *d,
 						double old_dirx, double old_planex)
 {
 	if (code[0])
@@ -60,7 +60,7 @@ void		turn(char *code, t_wolfd *d,
 	}
 }
 
-void		move(char *code, t_wolfd *d)
+void				move(char *code, t_wolfd *d)
 {
 	if (code[2] && test_move(d->player, d->map, d->size_map, 1))
 	{

@@ -6,7 +6,7 @@
 /*   By: rdidier <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/29 15:52:30 by rdidier           #+#    #+#             */
-/*   Updated: 2016/04/01 16:17:56 by rdidier          ###   ########.fr       */
+/*   Updated: 2016/04/01 17:00:08 by rdidier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 static void		dda(t_wolfd *d, t_ray *r)
 {
-
 	if (r->sdist->x < r->sdist->y)
 	{
 		r->sdist->x += r->ddist->x;
@@ -53,6 +52,7 @@ static void		give_steps(t_ray *r)
 		r->stepy = 1;
 		r->sdist->y = ((double)r->mapy + 1 - r->pos->y) * r->ddist->y;
 	}
+	r->touch = 0;
 }
 
 void			algo(t_wolfd *d)
@@ -74,10 +74,9 @@ void			algo(t_wolfd *d)
 		r->mapx = (int)r->pos->x;
 		r->mapy = (int)r->pos->y;
 		give_steps(r);
-		r->touch = 0;
 		while (!(r->touch))
 			dda(d, r);
-		if (!r->side) 
+		if (!r->side)
 			r->size = (r->mapx - r->pos->x + (1 - r->stepx) / 2) / r->dir->x;
 		else
 			r->size = (r->mapy - r->pos->y + (1 - r->stepy) / 2) / r->dir->y;

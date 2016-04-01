@@ -6,12 +6,12 @@
 /*   By: rdidier <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/27 18:33:07 by rdidier           #+#    #+#             */
-/*   Updated: 2016/04/01 16:57:38 by rdidier          ###   ########.fr       */
+/*   Updated: 2016/04/01 17:08:31 by rdidier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef __FRACTOL_H
-# define __FRACTOL_H
+#ifndef __WOLF3D_H
+# define __WOLF3D_H
 
 # include <fcntl.h>
 # include <stdlib.h>
@@ -19,10 +19,6 @@
 # include <time.h>
 # include "../libft/libft.h"
 # include <mlx.h>
-
-//TEMP
-# include <stdio.h>
-//TEMP
 
 # define SEPARATOR		' '
 # define KEY_EVENT		2
@@ -98,9 +94,7 @@ typedef struct		s_wolfd
 }					t_wolfd;
 
 int					listener(int keycode, void *d);
-
 void				algo(t_wolfd *d);
-
 int					pix_on_img(t_img *img, int x, int y, t_color *clr);
 void				draw_vline(t_wolfd *d, int x, int len);
 int					loop(t_wolfd *d);

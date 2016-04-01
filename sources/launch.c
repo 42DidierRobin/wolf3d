@@ -6,35 +6,13 @@
 /*   By: rdidier <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/27 18:36:10 by rdidier           #+#    #+#             */
-/*   Updated: 2016/04/01 16:32:37 by rdidier          ###   ########.fr       */
+/*   Updated: 2016/04/01 17:04:43 by rdidier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/wolf3d.h"
 
-//TEMp
-void				print_map(int **map, int size)
-{
-	int i;
-	int j;
-
-	i = 0;
-	while (i < size)
-	{
-		j = 0;
-		while (j < size)
-		{
-			ft_putnbr(map[i][j]);
-			ft_putstr(" ");
-			j++;
-		}
-		ft_putchar('\n');
-		i++;
-	}
-}
-//TEMp
-
-int			listener(int keycode, void *data)
+int					listener(int keycode, void *data)
 {
 	t_wolfd		*d;
 
@@ -70,12 +48,12 @@ static t_wolfd		*data_init(void)
 			&d->img->bpl, &d->img->endian);
 	d->player = new_player(new_point(10, 12), new_point(-1, 0),
 			new_point(0, 0.66));
-	d->ground = new_color(42,42,42);
-	d->sky = new_color(142,142,255);
-	d->east = new_color(0,125,125);
-	d->west = new_color(255,125,125);
-	d->north = new_color(125,0,125);
-	d->south = new_color(125,125,0);
+	d->ground = new_color(42, 42, 42);
+	d->sky = new_color(142, 142, 255);
+	d->east = new_color(0, 125, 125);
+	d->west = new_color(255, 125, 125);
+	d->north = new_color(125, 0, 125);
+	d->south = new_color(125, 125, 0);
 	d->ray = new_ray();
 	return (d);
 }
@@ -98,7 +76,7 @@ int					launch_it(char *argv)
 	return (1);
 }
 
-int				loop(t_wolfd *d)
+int					loop(t_wolfd *d)
 {
 	move(d->code, d);
 	turn(d->code, d, d->player->dir->x, d->player->plane->x);
