@@ -6,7 +6,7 @@
 /*   By: rdidier <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/27 19:53:40 by rdidier           #+#    #+#             */
-/*   Updated: 2016/04/01 17:14:11 by rdidier          ###   ########.fr       */
+/*   Updated: 2016/04/01 17:23:38 by rdidier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,33 @@ static int	get_map_info(t_wolfd *d, char *line)
 	return (1);
 }
 
+static int	check_map(int **map, int size)
+{
+	int x;
+	int y;
+
+	x = 0;
+	y = -1;
+	while (++y < size)
+		if (!map[x][y])
+			return (0);
+	x = size - 1;
+	y = -1;
+	while (++y < size)
+		if (!map[x][y])
+			return (0);
+	y = 0;
+	x = -1;
+	while (++x < size)
+		if (!map[x][y])
+			return (0);
+	y = size - 1;
+	while (++x < size)
+		if (!map[x][y])
+			return (0);
+	return (1);
+}
+
 int			read_it(char *file_name, t_wolfd *d)
 {
 	int		gnl_ret;
@@ -77,7 +104,8 @@ int			read_it(char *file_name, t_wolfd *d)
 			return (0);
 		i++;
 	}
-	if (!(d->map[(int)d->player->pos->x][(int)d->player->pos->y]))
+	if (!(d->map[(int)d->player->pos->x][(int)d->player->pos->y])
+			&& check_map(d->map, d->size_map))
 		return (1);
 	return (0);
 }
