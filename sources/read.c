@@ -6,7 +6,7 @@
 /*   By: rdidier <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/27 19:53:40 by rdidier           #+#    #+#             */
-/*   Updated: 2016/04/01 17:36:22 by rdidier          ###   ########.fr       */
+/*   Updated: 2016/04/01 18:21:34 by rdidier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 static int	read_help(int *lmap, int size, char *read)
 {
 	int		i;
+	int		temp;
 	char	**split_ret;
 
 	i = -1;
@@ -25,7 +26,12 @@ static int	read_help(int *lmap, int size, char *read)
 		return (0);
 	i = -1;
 	while (++i < size)
-		lmap[i] = ft_atoi(split_ret[i]);
+	{
+		temp = ft_atoi(split_ret[i]);
+		if (temp < 0)
+			return (0);
+		lmap[i] = temp;
+	}
 	return (1);
 }
 
@@ -45,8 +51,8 @@ static int	get_map_info(t_wolfd *d, char *line)
 		return (0);
 	d->player->pos->x = ft_atoi(split_ret[1]);
 	d->player->pos->y = ft_atoi(split_ret[2]);
-	d->player->pos->x += (d->player->pos->x < d->size_map / 2) ? 0.5 : -0.5;
-	d->player->pos->y += (d->player->pos->y < d->size_map / 2) ? 0.5 : -0.5;
+	d->player->pos->x += (d->player->pos->x <= d->size_map / 2) ? 0.4 : -0.6;
+	d->player->pos->y += (d->player->pos->y <= d->size_map / 2) ? 0.4 : -0.6;
 	if (d->player->pos->y < d->size_map / 2)
 		d->player->pos->x += 0.5;
 	if (d->player->pos->x > d->size_map
@@ -65,21 +71,21 @@ static int	check_map(int **map, int size)
 	x = 0;
 	y = -1;
 	while (++y < size)
-		if (!map[x][y])
+		if (!(map[x][y] == 1))
 			return (0);
 	x = size - 1;
 	y = -1;
 	while (++y < size)
-		if (!map[x][y])
+		if (!(map[x][y] == 1))
 			return (0);
 	y = 0;
 	x = -1;
 	while (++x < size)
-		if (!map[x][y])
+		if (!(map[x][y] == 1))
 			return (0);
 	y = size - 1;
 	while (++x < size)
-		if (!map[x][y])
+		if (!(map[x][y] == 1))
 			return (0);
 	return (1);
 }
@@ -104,7 +110,7 @@ int			read_it(char *file_name, t_wolfd *d)
 			return (0);
 		i++;
 	}
-	if (i == d->size_map 
+	if (i == d->size_map
 		&& !(d->map[(int)d->player->pos->x][(int)d->player->pos->y])
 		&& check_map(d->map, d->size_map))
 		return (1);

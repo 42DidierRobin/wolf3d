@@ -6,7 +6,7 @@
 /*   By: rdidier <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/27 18:33:07 by rdidier           #+#    #+#             */
-/*   Updated: 2016/04/01 17:08:31 by rdidier          ###   ########.fr       */
+/*   Updated: 2016/04/01 18:21:40 by rdidier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@
 # define KEY_MASK		(1L<<0)
 # define WINDOW_H 		768
 # define WINDOW_W	 	1024
-# define ROTSPEED		0.042
-# define MOVESPEED		0.12
+# define ROTSPEED		0.05
+# define MOVESPEED		0.042
 
 typedef unsigned char	t_uchar;
 
