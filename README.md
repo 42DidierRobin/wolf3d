@@ -28,7 +28,7 @@ Graphics
 	move
 		- ARROW
 	quit
-		- ESCAPE
+- ESCAPE
 
 ## Picture
 
