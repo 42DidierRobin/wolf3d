@@ -11,8 +11,7 @@ Imperative programming |
 Algorithms & AI |
 Graphics 
 ####Keywords
-Raycasting 
-Optimisation
+42, project, C, Matrix, Raytracing, ray casting, ray shooting, computational geometric, Graphic, 2D, 3D, modelization, Camera, tranformation, projection, reflection, texture, wireframe, wolfenstein, game, map, 
 
 ## compile
 
